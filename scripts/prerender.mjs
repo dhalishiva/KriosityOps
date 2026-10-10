@@ -40,7 +40,8 @@ const shell = template
   .replace('<meta name="robots" content="index, follow" />', '<meta name="robots" content="noindex, nofollow" />')
   .replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, '')
   .replace('<!--app-html-->', '');
-writeFileSync(join(dist, 'app.html'), shell);
+mkdirSync(join(dist, 'app'), { recursive: true });
+writeFileSync(join(dist, 'app', 'index.html'), shell);
 writeFileSync(join(dist, '404.html'), shell);
 
 const today = new Date().toISOString().slice(0, 10);
