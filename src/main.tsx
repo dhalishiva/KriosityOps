@@ -4,6 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 import './styles/base.css';
 import './styles/frames.css';
 import './styles/marketing.css';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import App from './App';
 
 createRoot(document.getElementById('root')!).render(
@@ -11,5 +13,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
+    <Analytics />
+    <SpeedInsights />
   </StrictMode>,
 );

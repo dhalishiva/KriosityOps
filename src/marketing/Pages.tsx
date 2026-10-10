@@ -137,7 +137,7 @@ export function PrivacyPage() {
         <li>Your email address and name, to create your account and sign you in with a one-time code.</li>
         <li>What you enter: app names, links, registry entries (provider, account name, project name or ref, console link, notes) and social post links.</li>
         <li>Billing records from Razorpay or PayPal: subscription ID, status, amount and renewal date. We never see or store card or UPI details.</li>
-        <li>Basic usage analytics from Vercel Analytics, which does not use cookies.</li>
+        <li>Anonymous page-view and page-speed data from Vercel Analytics and Vercel Speed Insights, which do not use cookies.</li>
       </ul>
       <h2>What we never ask for</h2>
       <p>
