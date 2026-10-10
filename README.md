@@ -6,7 +6,7 @@ Live at **https://ops.kriosity.in**. A Kriosity product by Shiva Dhali Services.
 
 ## Stack
 
-- React 18 + Vite + TypeScript, React Router. Marketing pages are prerendered to static HTML at build time for SEO; the signed-in app is a lazy-loaded SPA served from `app.html`.
+- React 18 + Vite + TypeScript, React Router. Marketing pages are prerendered to static HTML at build time for SEO; the signed-in app is a lazy-loaded SPA served from `/app` (the shell at `dist/app/index.html`).
 - Supabase project **KriosityOps** (`xfskyegiwupjkuepiavx`, ap-south-1), in the account `shiva.dhali@kriosity.in`.
 - Vercel for hosting. Edge functions on Supabase for billing and the contact form.
 
