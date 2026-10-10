@@ -45,13 +45,7 @@ Migrations are in `supabase/migrations`. Every table has RLS; every row belongs 
 
 - **URL configuration**: Site URL `https://ops.kriosity.in`; redirect URLs `https://ops.kriosity.in/**`.
 - **SMTP**: Settings → SMTP: host `smtp.office365.com`, port `587`, user `shiva.dhali@kriosity.in`, sender name `KriosityOps`, sender `shiva.dhali@kriosity.in`.
-- **Email templates → Magic link** and **Confirm signup**: put the code in the body so users get an OTP, for example:
-
-  ```html
-  <h2>Your KriosityOps code</h2>
-  <p>Enter this code to sign in: <strong style="font-size:24px;letter-spacing:4px">{{ .Token }}</strong></p>
-  <p>It expires in 10 minutes. If you didn’t ask for it, ignore this email.</p>
-  ```
+- **Email templates**: paste the files from `supabase/email-templates/` (the README there maps each file to its Supabase template and subject). Set Email OTP expiration to 600 seconds.
 - Optional: **Attack protection → Captcha** with Cloudflare Turnstile, then set `VITE_TURNSTILE_SITE_KEY` in Vercel.
 
 ### 2. Edge function secrets (Dashboard → Edge Functions → Secrets)

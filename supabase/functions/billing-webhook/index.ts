@@ -16,6 +16,8 @@ Deno.serve(async (req) => {
       const evt = JSON.parse(raw);
       const sub = evt.payload?.subscription?.entity;
       if (!sub) return ok();
+      // Razorpay sends every subscription in the account here (Mahina too). Only act on the KriosityOps plan.
+      if (sub.plan_id !== Deno.env.get('RAZORPAY_PLAN_ID')) return ok();
       const userId = sub.notes?.user_id ?? (await lookup(sub.id));
       if (!userId) return ok();
       const end = sub.current_end ? new Date(sub.current_end * 1000).toISOString() : null;
@@ -61,6 +63,8 @@ Deno.serve(async (req) => {
       if (!subId) return ok();
       const full = await paypal(`/v1/billing/subscriptions/${subId}`);
       const s = full.data ?? {};
+      // Ignore subscriptions for other products on the same PayPal account
+      if (s.plan_id && s.plan_id !== Deno.env.get('PAYPAL_PLAN_ID')) return ok();
       const userId = s.custom_id ?? (await lookup(subId));
       if (!userId) return ok();
       const end = s.billing_info?.next_billing_time ?? null;
