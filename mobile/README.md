@@ -46,8 +46,8 @@ Install the APK it gives you, then `npx expo start` and scan the QR code.
 Set the two variables once in EAS (they are public values, but EAS doesn't read your local `.env`):
 
 ```bash
-npx eas-cli@latest env:create --name EXPO_PUBLIC_SUPABASE_URL --value https://xfskyegiwupjkuepiavx.supabase.co --environment preview --environment production --visibility plaintext
-npx eas-cli@latest env:create --name EXPO_PUBLIC_SUPABASE_ANON_KEY --value sb_publishable_... --environment preview --environment production --visibility plaintext
+npx eas-cli@latest env:set --name EXPO_PUBLIC_SUPABASE_URL --value https://xfskyegiwupjkuepiavx.supabase.co --environment preview --environment production --environment development --visibility plaintext
+npx eas-cli@latest env:set --name EXPO_PUBLIC_SUPABASE_ANON_KEY --value sb_publishable_... --environment preview --environment production --environment development --visibility plaintext
 ```
 
 Then:
