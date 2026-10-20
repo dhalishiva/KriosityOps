@@ -1,0 +1,83 @@
+{
+  "expo": {
+    "name": "KriosityOps",
+    "slug": "kriosityops",
+    "scheme": "kriosityops",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "backgroundColor": "#F3F5F8",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "in.kriosity.ops"
+    },
+    "android": {
+      "package": "in.kriosity.ops",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "backgroundColor": "#14213D",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.POST_NOTIFICATIONS"
+      ],
+      "blockedPermissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-status-bar",
+      "expo-secure-store",
+      "expo-font",
+      [
+        "expo-sharing",
+        {
+          "android": {
+            "enabled": true,
+            "singleShareMimeTypes": [
+              "text/plain"
+            ],
+            "multipleShareMimeTypes": []
+          }
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 120,
+          "resizeMode": "contain",
+          "backgroundColor": "#F3F5F8",
+          "dark": {
+            "image": "./assets/splash-icon.png",
+            "backgroundColor": "#0D1424"
+          }
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#2B4BF2",
+          "defaultChannel": "due"
+        }
+      ],
+      "expo-web-browser",
+      "@react-native-community/datetimepicker"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

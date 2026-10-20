@@ -33,7 +33,7 @@ Splash ─► Login ─┬─► OTP ─┐
 
 | # | Screen | Data | Key behaviour |
 |---|---|---|---|
-| 1 | Log in | `auth.signInWithPassword` | Segmented: Password / Email code. Link to create account and reset password. |
+| 1 | Log in | `auth.signInWithOtp` | Email code only, like the web app (accounts have no passwords). Segmented: Log in / New account. |
 | 2 | Email code | `auth.signInWithOtp`, `auth.verifyOtp` (type `email`) | 6 boxes, paste support, resend after 60 s, code expires in 10 min. |
 | 3 | Board · empty | `apps` | One action: Add an app. States the identifiers-only rule. |
 | 4 | Board | `apps`, `resources`, `social_channels`, latest `social_posts`, latest `metrics_daily` | Summary strip (apps / being worked on / posts due). Filter chips: All, Live, Building, Needs a post. Cards sorted worst lamp first, then name. Pull to refresh. Search by name. FAB "+ App". |
