@@ -16,9 +16,18 @@ function latestByChannel(posts: Post[]) {
   return m;
 }
 
+/** Signed-in user's id. Admins can read every user's apps, so lists are always scoped to the owner. */
+async function myId() {
+  const { data } = await supabase.auth.getSession();
+  const id = data.session?.user.id;
+  if (!id) throw new Error('Not signed in');
+  return id;
+}
+
 export async function loadBoard(): Promise<{ apps: App[]; rows: BoardRow[] }> {
+  const uid = await myId();
   const [apps, res, chans, posts, metrics] = await Promise.all([
-    supabase.from('apps').select('*').order('created_at'),
+    supabase.from('apps').select('*').eq('owner_id', uid).order('created_at'),
     supabase.from('resources').select('app_id,kind,provider,project'),
     supabase.from('social_channels').select('*'),
     supabase.from('social_posts').select('id,channel_id,app_id,posted_at,links,note').order('posted_at', { ascending: false }).limit(2000),
@@ -50,8 +59,9 @@ export async function loadBoard(): Promise<{ apps: App[]; rows: BoardRow[] }> {
 }
 
 export async function loadApp(id: string) {
+  const uid = await myId();
   const [app, res, chans, posts, metrics] = await Promise.all([
-    supabase.from('apps').select('*').eq('id', id).maybeSingle(),
+    supabase.from('apps').select('*').eq('id', id).eq('owner_id', uid).maybeSingle(),
     supabase.from('resources').select('*').eq('app_id', id),
     supabase.from('social_channels').select('*').eq('app_id', id).order('created_at'),
     supabase.from('social_posts').select('*').eq('app_id', id).order('posted_at', { ascending: false }).limit(500),
