@@ -1,0 +1,618 @@
+<title>KriosityOps Android Screens</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a contact sheet of phone frames on cool paper, grouped by flow. Tokens are the KriosityOps web palette ("harbor control board") plus a dark set for the app's night mode. */
+:root {
+  --paper: #f3f5f8;
+  --surface: #ffffff;
+  --sunk: #e9edf3;
+  --ink: #14213d;
+  --ink-2: #47536d;
+  --ink-3: #7a859b;
+  --line: #d9dee7;
+  --line-2: #c4ccd8;
+  --cobalt: #2b4bf2;
+  --cobalt-ink: #1a33c4;
+  --cobalt-wash: #e7ecfe;
+  --on-cobalt: #ffffff;
+  --ok: #16a36a;
+  --due: #f5a524;
+  --late: #e5484d;
+  --off: #b4bccb;
+  --ok-wash: #e3f5ec;
+  --due-wash: #fef3dc;
+  --late-wash: #fde7e8;
+  --scrim: rgba(20, 33, 61, 0.42);
+  --frame: #14213d;
+  --sheet-bg: #f3f5f8;
+
+  --font: 'Schibsted Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0d1424; --surface: #151e33; --sunk: #1c2740; --ink: #e8ecf5; --ink-2: #aab3c7; --ink-3: #7c879e;
+    --line: #26324d; --line-2: #34415f; --cobalt: #6a84ff; --cobalt-ink: #9db0ff; --cobalt-wash: #1d2a5c; --on-cobalt: #0d1424;
+    --ok: #34c88a; --due: #f7b84a; --late: #f26b6f; --off: #4a5672;
+    --ok-wash: #11342a; --due-wash: #3a2c10; --late-wash: #3d1a1d; --scrim: rgba(0,0,0,0.55); --frame: #000000; --sheet-bg: #151e33;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0d1424; --surface: #151e33; --sunk: #1c2740; --ink: #e8ecf5; --ink-2: #aab3c7; --ink-3: #7c879e;
+  --line: #26324d; --line-2: #34415f; --cobalt: #6a84ff; --cobalt-ink: #9db0ff; --cobalt-wash: #1d2a5c; --on-cobalt: #0d1424;
+  --ok: #34c88a; --due: #f7b84a; --late: #f26b6f; --off: #4a5672;
+  --ok-wash: #11342a; --due-wash: #3a2c10; --late-wash: #3d1a1d; --scrim: rgba(0,0,0,0.55); --frame: #000000; --sheet-bg: #151e33;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink); font-family: var(--font); font-size: 15px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.page {
+  max-width: 1240px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 64px;
+  display: grid; gap: 48px;
+}
+.intro { display: grid; gap: 14px; max-width: 68ch; }
+.intro .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; letter-spacing: -0.02em; }
+.intro h1 { margin: 0; font-size: clamp(28px, 4vw, 40px); line-height: 1.1; letter-spacing: -0.03em; text-wrap: balance; }
+.intro p { margin: 0; color: var(--ink-2); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.flow { display: grid; gap: 20px; }
+.flow-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+.flow-head h2 { margin: 0; font-size: 20px; letter-spacing: -0.02em; }
+.flow-head p { margin: 0; color: var(--ink-3); font-size: 14px; }
+.sheet { display: flex; flex-wrap: wrap; gap: 28px; }
+figure { margin: 0; display: grid; gap: 10px; width: 300px; max-width: 100%; }
+figcaption { display: grid; gap: 2px; font-size: 13px; color: var(--ink-2); }
+figcaption b { color: var(--ink); font-size: 14px; }
+figcaption code { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); }
+
+/* ───── phone ───── */
+.phone {
+  width: 300px; max-width: 100%; aspect-ratio: 9 / 19.5; border-radius: 34px; padding: 8px;
+  background: var(--frame); box-shadow: 0 30px 60px -30px rgba(20,33,61,0.45);
+}
+.screen {
+  position: relative; height: 100%; border-radius: 27px; overflow: hidden; background: var(--paper);
+  display: flex; flex-direction: column; font-size: 13px;
+}
+.status { flex: none; height: 26px; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-2); }
+.status i { display: inline-block; width: 22px; height: 9px; border-radius: 2px; border: 1.5px solid currentColor; position: relative; }
+.status i::after { content: ""; position: absolute; inset: 1px 5px 1px 1px; background: currentColor; border-radius: 1px; }
+.topbar { flex: none; display: flex; align-items: center; gap: 10px; padding: 6px 14px 10px; }
+.topbar h3 { margin: 0; font-size: 19px; letter-spacing: -0.02em; flex: 1; min-width: 0; }
+.iconbtn { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; color: var(--ink-2); flex: none; }
+.iconbtn svg { width: 18px; height: 18px; }
+.body { flex: 1; min-height: 0; overflow: hidden; padding: 0 12px 12px; display: flex; flex-direction: column; gap: 10px; }
+.nav { flex: none; display: grid; grid-template-columns: repeat(3, 1fr); background: var(--surface); border-top: 1px solid var(--line); padding: 6px 4px 12px; }
+.nav span { display: grid; justify-items: center; gap: 3px; font-size: 10.5px; color: var(--ink-3); font-weight: 500; }
+.nav span svg { width: 20px; height: 20px; }
+.nav span .pill { width: 52px; height: 28px; border-radius: 14px; display: grid; place-items: center; position: relative; }
+.nav span.on { color: var(--ink); font-weight: 700; }
+.nav span.on .pill { background: var(--cobalt-wash); color: var(--cobalt-ink); }
+.badge { position: absolute; top: 0; right: 8px; min-width: 15px; height: 15px; padding: 0 4px; border-radius: 8px; background: var(--late); color: #fff; font-size: 9px; font-family: var(--mono); display: grid; place-items: center; }
+
+/* lamps & chips */
+.lamp { width: 9px; height: 9px; border-radius: 50%; flex: none; display: inline-block; }
+.lamp.ok { background: var(--ok); box-shadow: 0 0 0 3px var(--ok-wash); }
+.lamp.due { background: var(--due); box-shadow: 0 0 0 3px var(--due-wash); }
+.lamp.late { background: var(--late); box-shadow: 0 0 0 3px var(--late-wash); }
+.lamp.never { background: var(--off); }
+.chip { display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 8px; border-radius: 6px; background: var(--sunk); color: var(--ink-2); font-size: 11px; white-space: nowrap; }
+.chip.mono { font-family: var(--mono); font-size: 10.5px; }
+.chip.sel { background: var(--cobalt-wash); color: var(--cobalt-ink); font-weight: 600; }
+.chip.out { background: transparent; border: 1px solid var(--line-2); }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.tag { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+
+/* board */
+.summary { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.summary div { padding: 9px 10px; display: grid; gap: 1px; }
+.summary div + div { border-left: 1px solid var(--line); }
+.summary b { font-size: 18px; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.summary small { font-size: 10.5px; color: var(--ink-3); }
+.summary .warn b { color: var(--late); }
+.filter { display: flex; gap: 5px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 11px; display: grid; gap: 7px; }
+.card-top { display: flex; align-items: center; gap: 9px; }
+.swatch { width: 26px; height: 26px; border-radius: 7px; flex: none; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 12px; }
+.card-name { flex: 1; min-width: 0; display: grid; }
+.card-name strong { font-size: 14px; letter-spacing: -0.01em; }
+.card-name span { font-size: 11px; color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.users { text-align: right; font-variant-numeric: tabular-nums; display: grid; }
+.users b { font-size: 13px; }
+.users b em { font-style: normal; color: var(--ok); }
+.users small { font-size: 10px; color: var(--ink-3); }
+.card-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11px; color: var(--ink-2); }
+.lockline { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--cobalt-ink); background: var(--cobalt-wash); border-radius: 6px; padding: 4px 7px; }
+.lockline svg { width: 12px; height: 12px; }
+.fab { position: absolute; right: 14px; bottom: 74px; height: 46px; padding: 0 16px 0 13px; border-radius: 15px; background: var(--cobalt); color: var(--on-cobalt); display: flex; align-items: center; gap: 7px; font-weight: 700; font-size: 13px; box-shadow: 0 10px 20px -8px rgba(43,75,242,0.6); }
+.fab svg { width: 18px; height: 18px; }
+
+/* detail */
+.dhead { display: flex; align-items: center; gap: 10px; }
+.dhead .swatch { width: 38px; height: 38px; border-radius: 10px; font-size: 16px; }
+.dhead div { display: grid; min-width: 0; }
+.dhead strong { font-size: 18px; letter-spacing: -0.02em; }
+.dhead span { font-size: 11.5px; color: var(--ink-3); font-family: var(--mono); }
+.status-pill { display: inline-flex; align-items: center; gap: 5px; height: 20px; padding: 0 7px; border-radius: 10px; font-size: 10.5px; font-weight: 600; background: var(--ok-wash); color: var(--ok); width: fit-content; }
+.inuse { border-radius: 12px; padding: 10px 11px; display: grid; gap: 8px; background: var(--cobalt-wash); border: 1px solid transparent; }
+.inuse-row { display: flex; align-items: center; gap: 8px; color: var(--cobalt-ink); font-size: 12px; }
+.inuse-row svg { width: 15px; height: 15px; flex: none; }
+.inuse-row b { color: var(--ink); }
+.inuse.free { background: var(--surface); border-color: var(--line); }
+.inuse.free .inuse-row { color: var(--ink-2); }
+.tabs { display: flex; border-bottom: 1px solid var(--line); gap: 2px; }
+.tabs span { flex: 1; text-align: center; padding: 8px 0; font-size: 12.5px; color: var(--ink-3); font-weight: 500; border-bottom: 2px solid transparent; }
+.tabs span.on { color: var(--ink); font-weight: 700; border-color: var(--cobalt); }
+.list { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.row { display: flex; align-items: center; gap: 10px; padding: 9px 11px; }
+.row + .row { border-top: 1px solid var(--line); }
+.kind { width: 28px; height: 28px; border-radius: 8px; background: var(--sunk); display: grid; place-items: center; color: var(--ink-2); flex: none; }
+.kind svg { width: 15px; height: 15px; }
+.row-main { flex: 1; min-width: 0; display: grid; }
+.row-main b { font-size: 12.5px; font-weight: 600; }
+.row-main span { font-size: 11px; color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.row-main span.m { font-family: var(--mono); font-size: 10.5px; }
+.row .end { color: var(--ink-3); flex: none; display: flex; gap: 2px; }
+.row .end svg { width: 15px; height: 15px; }
+.right { text-align: right; font-size: 11px; color: var(--ink-2); flex: none; display: grid; justify-items: end; gap: 3px; }
+.right .tiny { font-size: 10px; color: var(--ink-3); }
+.btn { height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 6px; font-weight: 700; font-size: 13px; }
+.btn.primary { background: var(--cobalt); color: var(--on-cobalt); }
+.btn.ghost { background: var(--surface); border: 1px solid var(--line-2); color: var(--ink); }
+.btn.small { height: 28px; font-size: 11.5px; padding: 0 10px; border-radius: 8px; }
+.btn svg { width: 15px; height: 15px; }
+.btnrow { display: flex; gap: 6px; }
+.btnrow .btn { flex: 1; }
+.log-btn { height: 26px; padding: 0 9px; border-radius: 8px; background: var(--cobalt); color: var(--on-cobalt); font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; }
+
+/* forms & sheets */
+.field { display: grid; gap: 4px; }
+.field label { font-size: 11px; font-weight: 600; color: var(--ink-2); }
+.input { height: 40px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line-2); padding: 0 11px; display: flex; align-items: center; justify-content: space-between; color: var(--ink); font-size: 13px; }
+.input.focus { border-color: var(--cobalt); box-shadow: 0 0 0 3px var(--cobalt-wash); }
+.input.ph { color: var(--ink-3); }
+.input.m { font-family: var(--mono); font-size: 12px; }
+.input svg { width: 15px; height: 15px; color: var(--ink-3); }
+.hint { font-size: 10.5px; color: var(--ink-3); }
+.hint.good { color: var(--ok); }
+.scrim { position: absolute; inset: 0; background: var(--scrim); }
+.bsheet { position: absolute; left: 0; right: 0; bottom: 0; background: var(--sheet-bg); border-radius: 20px 20px 0 0; padding: 8px 14px 16px; display: grid; gap: 10px; }
+.grab { width: 34px; height: 4px; border-radius: 2px; background: var(--line-2); justify-self: center; }
+.bsheet h4 { margin: 0; font-size: 16px; letter-spacing: -0.02em; }
+.ghosted { opacity: 0.55; filter: saturate(0.6); pointer-events: none; }
+
+/* auth */
+.auth { flex: 1; display: flex; flex-direction: column; gap: 14px; padding: 18px 20px 20px; }
+.auth h3 { margin: 0; font-size: 24px; letter-spacing: -0.03em; line-height: 1.15; text-wrap: balance; }
+.auth p { margin: 0; color: var(--ink-2); font-size: 12.5px; }
+.seg { display: grid; grid-template-columns: 1fr 1fr; background: var(--sunk); border-radius: 10px; padding: 3px; }
+.seg span { text-align: center; padding: 6px 0; border-radius: 8px; font-size: 12px; color: var(--ink-2); font-weight: 600; }
+.seg span.on { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(20,33,61,0.12); }
+.or { display: flex; align-items: center; gap: 8px; color: var(--ink-3); font-size: 11px; }
+.or::before, .or::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.otp { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+.otp span { height: 46px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line-2); display: grid; place-items: center; font-family: var(--mono); font-size: 19px; font-weight: 500; }
+.otp span.cur { border-color: var(--cobalt); box-shadow: 0 0 0 3px var(--cobalt-wash); }
+.foot { margin-top: auto; text-align: center; font-size: 11px; color: var(--ink-3); }
+.foot a { color: var(--cobalt-ink); font-weight: 600; text-decoration: none; }
+
+/* empty & misc */
+.empty { flex: 1; display: grid; place-content: center; justify-items: center; gap: 10px; text-align: center; padding: 0 18px; }
+.empty h4 { margin: 0; font-size: 17px; letter-spacing: -0.02em; }
+.empty p { margin: 0; color: var(--ink-2); font-size: 12.5px; }
+.mini-board { width: 132px; padding: 10px; border-radius: 14px; background: var(--surface); border: 1px dashed var(--line-2); display: grid; gap: 7px; }
+.mini-board div { display: flex; align-items: center; gap: 7px; }
+.mini-board i { flex: 1; height: 7px; border-radius: 4px; background: var(--sunk); }
+.section-label { font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); padding: 2px 2px 0; display: flex; justify-content: space-between; }
+.section-label em { font-style: normal; color: var(--late); }
+.plan { border-radius: 12px; padding: 12px; display: grid; gap: 8px; background: var(--ink); color: var(--paper); }
+.plan .tag { color: var(--off); }
+.plan b { font-size: 18px; letter-spacing: -0.02em; }
+.plan span { font-size: 11.5px; opacity: 0.8; }
+.meter { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.18); overflow: hidden; }
+.meter i { display: block; height: 100%; width: 100%; background: var(--due); }
+.notice { border-radius: 12px; padding: 11px; background: var(--due-wash); display: grid; gap: 6px; }
+.notice b { font-size: 13px; }
+.notice p { margin: 0; font-size: 11.5px; color: var(--ink-2); }
+.spark { display: block; width: 100%; height: 58px; }
+.stat2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.stat2 div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 9px 10px; display: grid; }
+.stat2 b { font-size: 18px; font-variant-numeric: tabular-nums; }
+.stat2 small { font-size: 10.5px; color: var(--ink-3); }
+.snack { position: absolute; left: 12px; right: 12px; bottom: 74px; background: var(--ink); color: var(--paper); border-radius: 10px; padding: 10px 12px; font-size: 12px; display: flex; justify-content: space-between; align-items: center; }
+.snack b { color: var(--due); font-weight: 700; }
+
+.notes { display: grid; gap: 10px; max-width: 72ch; color: var(--ink-2); font-size: 14px; }
+.notes h2 { margin: 0; font-size: 20px; color: var(--ink); letter-spacing: -0.02em; }
+.notes ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.notes b { color: var(--ink); }
+@media (prefers-reduced-motion: no-preference) { .phone { transition: transform .2s ease; } .phone:hover { transform: translateY(-3px); } }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-board" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="7" r="1.6" fill="currentColor"/><path d="M11 7h8"/><circle cx="6" cy="12" r="1.6" fill="currentColor"/><path d="M11 12h6"/><circle cx="6" cy="17" r="1.6" fill="currentColor"/><path d="M11 17h7"/></g></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15L6 16Zm4 4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0" stroke-linecap="round"/></g></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4" stroke-linecap="round"/></g></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-more" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></g></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></g></symbol>
+  <symbol id="i-unlock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 7.5-2"/></g></symbol>
+  <symbol id="i-db" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></g></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18a4.5 4.5 0 0 1-.6-9A6 6 0 0 1 18 9.5 4.3 4.3 0 0 1 17.5 18H7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-git" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="2.2"/><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="9" r="2.2"/><path d="M6 8.2v7.6M18 11.2c0 3-4 3-8.5 5"/></g></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></g></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10.5h18M7 15h4"/></g></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></g></symbol>
+  <symbol id="i-open" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></g></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19l-4 1Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4.4 3 7.6 7 9 4-1.4 7-4.6 7-9V6l-7-3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-logo" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#14213D"/><circle cx="9.5" cy="10" r="2.4" fill="#16A36A"/><rect x="14" y="8.6" width="11" height="2.8" rx="1.4" fill="#fff"/><circle cx="9.5" cy="16" r="2.4" fill="#16A36A"/><rect x="14" y="14.6" width="8" height="2.8" rx="1.4" fill="#fff"/><circle cx="9.5" cy="22" r="2.4" fill="#F5A524"/><rect x="14" y="20.6" width="10" height="2.8" rx="1.4" fill="#fff"/></symbol>
+</svg>
+
+<div class="page">
+  <header class="intro">
+    <div class="brand"><svg width="30" height="30"><use href="#i-logo"/></svg> KriosityOps for Android</div>
+    <h1>Every app you run, readable from your pocket</h1>
+    <p>Twelve screens for the Android app, drawn with the same palette, type and signal lamps as ops.kriosity.in. The app names and numbers below are example data. Switch your system to dark mode to see the night theme.</p>
+    <div class="legend">
+      <span><i class="lamp ok"></i> Posted within cadence</span>
+      <span><i class="lamp due"></i> Due (cadence reached)</span>
+      <span><i class="lamp late"></i> Late (twice the cadence)</span>
+      <span><i class="lamp never"></i> Never posted</span>
+    </div>
+  </header>
+
+  <!-- ───────── FLOW 1: sign in ───────── -->
+  <section class="flow">
+    <div class="flow-head"><h2>Sign in</h2><p>Same Supabase account as the web app. Email + password, or a 6-digit email code.</p></div>
+    <div class="sheet">
+      <figure>
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><i></i></div>
+          <div class="auth">
+            <svg width="44" height="44"><use href="#i-logo"/></svg>
+            <h3>Log in to your board</h3>
+            <p>Use the account you made on ops.kriosity.in.</p>
+            <div class="seg"><span class="on">Password</span><span>Email code</span></div>
+            <div class="field"><label>Email</label><div class="input">shiva.dhali@kriosity.in</div></div>
+            <div class="field"><label>Password</label><div class="input focus">••••••••••<svg><use href="#i-lock"/></svg></div></div>
+            <div class="btn primary">Log in</div>
+            <div class="or">or</div>
+            <div class="btn ghost">Create a free account</div>
+            <div class="foot">Forgot password? <a href="#">Reset it</a></div>
+          </div>
+        </div></div>
+        <figcaption><b>1 · Log in</b>Segmented switch between password and email code. Keyboard pushes the form up; the logo collapses.<code>LoginScreen</code></figcaption>
+      </figure>
+
+      <figure>
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><i></i></div>
+          <div class="topbar"><span class="iconbtn"><svg><use href="#i-back"/></svg></span><h3></h3></div>
+          <div class="auth" style="padding-top:0">
+            <h3>Enter the code we emailed</h3>
+            <p>Sent to <b style="color:var(--ink)">shiva.dhali@kriosity.in</b>. It expires in 10 minutes.</p>
+            <div class="otp"><span>4</span><span>8</span><span>2</span><span class="cur">0</span><span></span><span></span></div>
+            <div class="hint">Code autofills from your email app where Android allows it.</div>
+            <div class="btn primary">Verify and continue</div>
+            <div class="btn ghost">Resend code in 0:42</div>
+            <div class="foot">Wrong email? <a href="#">Change it</a></div>
+          </div>
+        </div></div>
+        <figcaption><b>2 · Email code</b>Six boxes, one input underneath for paste. Resend is disabled for 60 s.<code>OtpScreen</code></figcaption>
+      </figure>
+
+      <figure>
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><i></i></div>
+          <div class="topbar"><h3>Board</h3><span class="iconbtn"><svg><use href="#i-search"/></svg></span></div>
+          <div class="empty">
+            <div class="mini-board">
+              <div><i class="lamp never"></i><i></i></div>
+              <div><i class="lamp never"></i><i style="flex:.7"></i></div>
+            </div>
+            <h4>Add your first app</h4>
+            <p>Note where it's hosted, which database it uses and where you post about it. No passwords or keys, only names and links.</p>
+            <div class="btn primary" style="padding:0 18px"><svg><use href="#i-plus"/></svg> Add an app</div>
+            <div class="hint">Free plan: 2 apps</div>
+          </div>
+          <nav class="nav"><span class="on"><span class="pill"><svg><use href="#i-board"/></svg></span>Board</span><span><span class="pill"><svg><use href="#i-bell"/></svg></span>Due</span><span><span class="pill"><svg><use href="#i-user"/></svg></span>Account</span></nav>
+        </div></div>
+        <figcaption><b>3 · First run</b>Empty board explains the one rule (identifiers only) and offers one action.<code>BoardScreen · empty</code></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ───────── FLOW 2: board & app ───────── -->
+  <section class="flow">
+    <div class="flow-head"><h2>Board and app</h2><p>The home screen answers "is anything on fire?" in one glance; an app's page answers "where does it live?".</p></div>
+    <div class="sheet">
+      <figure>
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><i></i></div>
+          <div class="topbar"><h3>Board</h3><span class="iconbtn"><svg><use href="#i-search"/></svg></span><span class="iconbtn"><svg width="26" height="26" style="width:26px;height:26px"><use href="#i-logo"/></svg></span></div>
+          <div class="body">
+            <div class="summary">
+              <div><b>5</b><small>apps</small></div>
+              <div><b>1</b><small>being worked on</small></div>
+              <div class="warn"><b>3</b><small>posts due</small></div>
+            </div>
+            <div class="filter"><span class="chip sel">All</span><span class="chip out">Live</span><span class="chip out">Building</span><span class="chip out">Needs a post</span></div>
+            <div class="card">
+              <div class="card-top"><span class="swatch" style="background:#E8572A">S</span><span class="card-name"><strong>SlotRecover</strong><span>slotrecover.pro</span></span><span class="users"><b><em>+4</em> / 212</b><small>users</small></span></div>
+              <div class="chips"><span class="chip mono">Supabase</span><span class="chip mono">Vercel</span><span class="chip mono">Razorpay</span></div>
+              <div class="card-foot"><span style="display:flex;align-items:center;gap:6px"><i class="lamp late"></i>X · 7 days ago</span><span>Reddit <i class="lamp ok"></i></span></div>
+            </div>
+            <div class="card">
+              <div class="card-top"><span class="swatch" style="background:#2B4BF2">P</span><span class="card-name"><strong>PaidTwice</strong><span>paidtwice.kriosity.in</span></span><span class="users"><b><em>+1</em> / 38</b><small>users</small></span></div>
+              <div class="lockline"><svg><use href="#i-lock"/></svg> Claude is working on it · 40 min</div>
+              <div class="card-foot"><span style="display:flex;align-items:center;gap:6px"><i class="lamp due"></i>LinkedIn · due today</span><span>X <i class="lamp ok"></i></span></div>
+            </div>
+            <div class="card">
+              <div class="card-top"><span class="swatch" style="background:#16A36A">M</span><span class="card-name"><strong>Mahina</strong><span>mahina.kriosity.in</span></span><span class="users"><b>0 / 64</b><small>users</small></span></div>
+              <div class="card-foot"><span style="display:flex;align-items:center;gap:6px"><i class="lamp ok"></i>X · yesterday</span><span>Supabase · Vercel</span></div>
+            </div>
+          </div>
+          <div class="fab"><svg><use href="#i-plus"/></svg> App</div>
+          <nav class="nav"><span class="on"><span class="pill"><svg><use href="#i-board"/></svg></span>Board</span><span><span class="pill"><svg><use href="#i-bell"/></svg><i class="badge">3</i></span>Due</span><span><span class="pill"><svg><use href="#i-user"/></svg></span>Account</span></nav>
+        </div></div>
+        <figcaption><b>4 · Board</b>Summary strip, filter chips, one card per app sorted worst-lamp first. Pull to refresh. Tap a card to open the app.<code>BoardScreen</code></figcaption>
+      </figure>
+
+      <figure>
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><i></i></div>
+          <div class="topbar"><span class="iconbtn"><svg><use href="#i-back"/></svg></span><h3></h3><span class="iconbtn"><svg><use href="#i-open"/></svg></span><span class="iconbtn"><svg><use href="#i-more"/></svg></span></div>
+          <div class="body">
+            <div class="dhead"><span class="swatch" style="background:#2B4BF2">P</span><div><strong>PaidTwice</strong><span>paidtwice.kriosity.in</span></div></div>
+            <span class="status-pill"><i class="lamp ok" style="box-shadow:none;width:6px;height:6px"></i>Live</span>
+            <div class="inuse">
+              <div class="inuse-row"><svg><use href="#i-lock"/></svg><span><b>Claude</b> is working on PaidTwice since 1:02 PM</span></div>
+              <div class="btn small ghost" style="justify-self:start"><svg><use href="#i-unlock"/></svg> Mark as free</div>
+            </div>
+            <div class="tabs"><span class="on">Stack</span><span>Social</span><span>Numbers</span></div>
+            <div class="list">
+              <div class="row"><span class="kind"><svg><use href="#i-db"/></svg></span><span class="row-main"><b>Supabase</b><span class="m">xfskyeg…avx · shiva.dhali@…</span></span><span class="end"><svg><use href="#i-copy"/></svg></span></div>
+              <div class="row"><span class="kind"><svg><use href="#i-cloud"/></svg></span><span class="row-main"><b>Vercel</b><span class="m">paidtwice · kriosity team</span></span><span class="end"><svg><use href="#i-open"/></svg></span></div>
+              <div class="row"><span class="kind"><svg><use href="#i-git"/></svg></span><span class="row-main"><b>GitHub</b><span class="m">dhalishiva/paidtwice</span></span><span class="end"><svg><use href="#i-open"/></svg></span></div>
+              <div class="row"><span class="kind"><svg><use href="#i-globe"/></svg></span><span class="row-main"><b>Hostinger</b><span class="m">kriosity.in</span></span><span class="end"><svg><use href="#i-copy"/></svg></span></div>
+              <div class="row"><span class="kind"><svg><use href="#i-card"/></svg></span><span class="row-main"><b>Razorpay</b><span class="m">Pro ₹299 plan</span></span><span class="end"><svg><use href="#i-open"/></svg></span></div>
+            </div>
+            <div class="btn ghost"><svg><use href="#i-plus"/></svg> Add to stack</div>
+          </div>
+        </div></div>
+        <figcaption><b>5 · App · Stack</b>The "who's working on it" strip sits above the tabs. Rows copy the project ref or open the console link.<code>AppDetailScreen · Stack</code></figcaption>
+      </figure>
+
+      <figure>
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><i></i></div>
+          <div class="topbar"><span class="iconbtn"><svg><use href="#i-back"/></svg></span><h3></h3><span class="iconbtn"><svg><use href="#i-open"/></svg></span><span class="iconbtn"><svg><use href="#i-more"/></svg></span></div>
+          <div class="body ghosted">
+            <div class="dhead"><span class="swatch" style="background:#E8572A">S</span><div><strong>SlotRecover</strong><span>slotrecover.pro</span></div></div>
+            <div class="inuse free"><div class="inuse-row"><svg><use href="#i-unlock"/></svg><span>Nobody is working on it</span></div></div>
+          </div>
+          <div class="scrim"></div>
+          <div class="bsheet">
+            <div class="grab"></div>
+            <h4>Who's working on SlotRecover?</h4>
+            <div class="chips"><span class="chip sel">Me</span><span class="chip out">Claude</span><span class="chip out">ChatGPT</span><span class="chip out">Cursor</span><span class="chip out">Someone else…</span></div>
+            <div class="hint">Shows on the board until someone marks it free, so two people (or two AIs) don't edit the same app at once.</div>
+            <div class="btn primary"><svg><use href="#i-lock"/></svg> Mark as in use</div>
+          </div>
+        </div></div>
+        <figcaption><b>6 · Claim an app</b>Bottom sheet from "Nobody is working on it". Remembers the last choice.<code>InUseSheet</code></figcaption>
+      </figure>
+
+      <figure>
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><i></i></div>
+          <div class="topbar"><span class="iconbtn"><svg><use href="#i-back"/></svg></span><h3></h3></div>
+          <div class="body ghosted"><div class="dhead"><span class="swatch" style="background:#2B4BF2">P</span><div><strong>PaidTwice</strong><span>paidtwice.kriosity.in</span></div></div></div>
+          <div class="scrim"></div>
+          <div class="bsheet">
+            <div class="grab"></div>
+            <h4>Add to stack</h4>
+            <div class="field"><label>What is it?</label>
+              <div class="chips"><span class="chip sel">Database</span><span class="chip out">Hosting</span><span class="chip out">Code repo</span><span class="chip out">Domain</span><span class="chip out">Payments</span><span class="chip out">Email</span><span class="chip out">More…</span></div></div>
+            <div class="field"><label>Provider</label><div class="input">Supabase<svg><use href="#i-down"/></svg></div></div>
+            <div class="field"><label>Account</label><div class="input">shiva.dhali@kriosity.in</div></div>
+            <div class="field"><label>Project name or ref</label><div class="input m focus">xfskyegiwupjkuepiavx</div><span class="hint good">Console link filled in for you</span></div>
+            <div class="field"><label>Console link</label><div class="input m ph">supabase.com/dashboard/project/xfsk…</div></div>
+            <div class="btn primary">Save</div>
+          </div>
+        </div></div>
+        <figcaption><b>7 · Add to stack</b>Kind chips, provider dropdown with type-your-own, auto link for Supabase/GitHub/GitLab/Netlify. A warning shows if a value looks like a secret key.<code>ResourceSheet</code></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ───────── FLOW 3: social ───────── -->
+  <section class="flow">
+    <div class="flow-head"><h2>Social log</h2><p>The lamps turn amber when a channel reaches its cadence and red at twice it. Logging a post resets the lamp.</p></div>
+    <div class="sheet">
+      <figure>
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><i></i></div>
+          <div class="topbar"><span class="iconbtn"><svg><use href="#i-back"/></svg></span><h3></h3><span class="iconbtn"><svg><use href="#i-more"/></svg></span></div>
+          <div class="body">
+            <div class="dhead"><span class="swatch" style="background:#E8572A">S</span><div><strong>SlotRecover</strong><span>slotrecover.pro</span></div></div>
+            <div class="tabs"><span>Stack</span><span class="on">Social</span><span>Numbers</span></div>
+            <div class="list">
+              <div class="row"><i class="lamp late"></i><span class="row-main"><b>X · @slotrecover</b><span>Every 3 days · last 7 days ago</span></span><span class="log-btn">Log</span></div>
+              <div class="row"><i class="lamp ok"></i><span class="row-main"><b>Reddit · r/SaaS</b><span>Every 7 days · last 2 days ago</span></span><span class="log-btn">Log</span></div>
+              <div class="row"><i class="lamp due"></i><span class="row-main"><b>LinkedIn · Shiva Dhali</b><span>Every 5 days · last 5 days ago</span></span><span class="log-btn">Log</span></div>
+              <div class="row"><i class="lamp never"></i><span class="row-main"><b>Product Hunt</b><span>Every 30 days · never</span></span><span class="log-btn">Log</span></div>
+            </div>
+            <div class="section-label">Recent posts</div>
+            <div class="list">
+              <div class="row"><span class="row-main"><b>Reddit</b><span>"How we recover 30% of no-shows"</span></span><span class="right">18 Oct<span class="tiny">1 link</span></span></div>
+              <div class="row"><span class="row-main"><b>LinkedIn</b><span>Launch week recap</span></span><span class="right">15 Oct<span class="tiny">2 links</span></span></div>
+            </div>
+            <div class="btn ghost"><svg><use href="#i-plus"/></svg> Add a channel</div>
+          </div>
+        </div></div>
+        <figcaption><b>8 · App · Social</b>Channels with cadence and lamp; "Log" opens the sheet. Swipe a post left to delete it.<code>AppDetailScreen · Social</code></figcaption>
+      </figure>
+
+      <figure>
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><i></i></div>
+          <div class="topbar"><span class="iconbtn"><svg><use href="#i-back"/></svg></span><h3></h3></div>
+          <div class="body ghosted"><div class="tabs"><span>Stack</span><span class="on">Social</span><span>Numbers</span></div></div>
+          <div class="scrim"></div>
+          <div class="bsheet">
+            <div class="grab"></div>
+            <h4>Log a post on X</h4>
+            <div class="hint" style="margin-top:-6px">SlotRecover · @slotrecover</div>
+            <div class="field"><label>When</label><div class="input">Today, 2:05 PM<svg><use href="#i-down"/></svg></div></div>
+            <div class="field"><label>Link to the post</label><div class="input m focus">x.com/slotrecover/status/18…</div></div>
+            <div style="font-size:11.5px;color:var(--cobalt-ink);font-weight:600;display:flex;gap:5px;align-items:center"><svg width="14" height="14"><use href="#i-plus"/></svg> Another link</div>
+            <div class="field"><label>Note (optional)</label><div class="input ph">What was it about?</div></div>
+            <div class="btn primary">Log post</div>
+          </div>
+        </div></div>
+        <figcaption><b>9 · Log a post</b>Pre-filled from a share: share a tweet to KriosityOps from the X app and this sheet opens with the link.<code>LogPostSheet</code></figcaption>
+      </figure>
+
+      <figure>
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><i></i></div>
+          <div class="topbar"><h3>Due</h3></div>
+          <div class="body">
+            <div class="section-label">Late <em>1</em></div>
+            <div class="list">
+              <div class="row"><i class="lamp late"></i><span class="row-main"><b>SlotRecover · X</b><span>7 days since last post · every 3</span></span><span class="log-btn">Log</span></div>
+            </div>
+            <div class="section-label">Due today <em style="color:var(--due)">2</em></div>
+            <div class="list">
+              <div class="row"><i class="lamp due"></i><span class="row-main"><b>PaidTwice · LinkedIn</b><span>5 days · every 5</span></span><span class="log-btn">Log</span></div>
+              <div class="row"><i class="lamp due"></i><span class="row-main"><b>SlotRecover · LinkedIn</b><span>5 days · every 5</span></span><span class="log-btn">Log</span></div>
+            </div>
+            <div class="section-label">Coming up</div>
+            <div class="list">
+              <div class="row"><i class="lamp ok"></i><span class="row-main"><b>Mahina · X</b><span>Due in 2 days</span></span><span class="right">22 Oct</span></div>
+              <div class="row"><i class="lamp ok"></i><span class="row-main"><b>SlotRecover · Reddit</b><span>Due in 5 days</span></span><span class="right">25 Oct</span></div>
+            </div>
+          </div>
+          <div class="snack"><span>Logged X for SlotRecover</span><b>Undo</b></div>
+          <nav class="nav"><span><span class="pill"><svg><use href="#i-board"/></svg></span>Board</span><span class="on"><span class="pill"><svg><use href="#i-bell"/></svg><i class="badge">3</i></span>Due</span><span><span class="pill"><svg><use href="#i-user"/></svg></span>Account</span></nav>
+        </div></div>
+        <figcaption><b>10 · Due</b>Every channel across all apps, grouped late / due / coming up. One daily notification at 9 AM summarises this list.<code>DueScreen</code></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ───────── FLOW 4: numbers & account ───────── -->
+  <section class="flow">
+    <div class="flow-head"><h2>Numbers and account</h2><p>Daily user counts come from the 6 AM IST collector. Plan changes happen on the website.</p></div>
+    <div class="sheet">
+      <figure>
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><i></i></div>
+          <div class="topbar"><span class="iconbtn"><svg><use href="#i-back"/></svg></span><h3></h3></div>
+          <div class="body">
+            <div class="dhead"><span class="swatch" style="background:#E8572A">S</span><div><strong>SlotRecover</strong><span>slotrecover.pro</span></div></div>
+            <div class="tabs"><span>Stack</span><span>Social</span><span class="on">Numbers</span></div>
+            <div class="stat2"><div><b>212</b><small>total users</small></div><div><b style="color:var(--ok)">+4</b><small>new, last 24 h</small></div></div>
+            <div class="list" style="padding:10px 11px 6px;display:grid;gap:4px">
+              <div style="display:flex;justify-content:space-between;font-size:11.5px"><b>New users · 14 days</b><span style="color:var(--ink-3)">6 Oct – 19 Oct</span></div>
+              <svg class="spark" viewBox="0 0 260 58" preserveAspectRatio="none" aria-label="New users per day, rising from 1 to 4">
+                <g stroke="var(--line)" stroke-width="1"><line x1="0" y1="14" x2="260" y2="14"/><line x1="0" y1="36" x2="260" y2="36"/><line x1="0" y1="57" x2="260" y2="57"/></g>
+                <path d="M0 52 L20 47 L40 52 L60 41 L80 47 L100 36 L120 41 L140 30 L160 36 L180 25 L200 30 L220 19 L240 25 L260 14 L260 58 L0 58 Z" fill="var(--cobalt-wash)"/>
+                <path d="M0 52 L20 47 L40 52 L60 41 L80 47 L100 36 L120 41 L140 30 L160 36 L180 25 L200 30 L220 19 L240 25 L260 14" fill="none" stroke="var(--cobalt)" stroke-width="2"/>
+                <circle cx="256" cy="15" r="3.5" fill="var(--cobalt)"/>
+              </svg>
+            </div>
+            <div class="list">
+              <div class="row"><span class="row-main"><b>Visitors, last 24 h</b></span><span class="right" style="font-size:13px;color:var(--ink);font-variant-numeric:tabular-nums">1,284</span></div>
+              <div class="row"><span class="row-main"><b>Page views, last 24 h</b></span><span class="right" style="font-size:13px;color:var(--ink);font-variant-numeric:tabular-nums">3,906</span></div>
+            </div>
+            <div class="hint">Updated today at 6:00 AM IST</div>
+          </div>
+        </div></div>
+        <figcaption><b>11 · App · Numbers</b>Reads <code>metrics_daily</code>. Before the collector has run, shows "Numbers start tomorrow at 6 AM".<code>AppDetailScreen · Numbers</code></figcaption>
+      </figure>
+
+      <figure>
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><i></i></div>
+          <div class="topbar"><h3>Account</h3></div>
+          <div class="body">
+            <div class="plan">
+              <span class="tag">Your plan</span>
+              <b>Free · 2 of 2 apps</b>
+              <div class="meter"><i></i></div>
+              <span>Pro gives unlimited apps. Manage your plan on ops.kriosity.in from a computer.</span>
+            </div>
+            <div class="list">
+              <div class="row"><span class="kind"><svg><use href="#i-mail"/></svg></span><span class="row-main"><b>Email</b><span>shiva.dhali@kriosity.in</span></span></div>
+              <div class="row"><span class="kind"><svg><use href="#i-bell"/></svg></span><span class="row-main"><b>Daily reminder</b><span>9:00 AM · only when something is due</span></span><span class="end"><svg><use href="#i-chev"/></svg></span></div>
+              <div class="row"><span class="kind"><svg><use href="#i-moon"/></svg></span><span class="row-main"><b>Theme</b><span>Follow system</span></span><span class="end"><svg><use href="#i-chev"/></svg></span></div>
+              <div class="row"><span class="kind"><svg><use href="#i-shield"/></svg></span><span class="row-main"><b>Admin</b><span>Users and payments</span></span><span class="end"><svg><use href="#i-chev"/></svg></span></div>
+            </div>
+            <div class="list">
+              <div class="row"><span class="kind"><svg><use href="#i-chat"/></svg></span><span class="row-main"><b>Help on WhatsApp</b><span>Usually replies within a day</span></span><span class="end"><svg><use href="#i-open"/></svg></span></div>
+              <div class="row"><span class="kind"><svg><use href="#i-link"/></svg></span><span class="row-main"><b>Privacy and terms</b></span><span class="end"><svg><use href="#i-open"/></svg></span></div>
+            </div>
+            <div class="btn ghost" style="color:var(--late)">Log out</div>
+            <div class="hint" style="text-align:center">KriosityOps 1.0.0 · A Kriosity product</div>
+          </div>
+          <nav class="nav"><span><span class="pill"><svg><use href="#i-board"/></svg></span>Board</span><span><span class="pill"><svg><use href="#i-bell"/></svg></span>Due</span><span class="on"><span class="pill"><svg><use href="#i-user"/></svg></span>Account</span></nav>
+        </div></div>
+        <figcaption><b>12 · Account</b>Admin row only when <code>profiles.is_admin</code>. No in-app purchase button (see note below).<code>AccountScreen</code></figcaption>
+      </figure>
+
+      <figure>
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><i></i></div>
+          <div class="topbar"><h3>Board</h3></div>
+          <div class="body ghosted">
+            <div class="summary"><div><b>2</b><small>apps</small></div><div><b>0</b><small>being worked on</small></div><div><b>1</b><small>posts due</small></div></div>
+          </div>
+          <div class="scrim"></div>
+          <div class="bsheet">
+            <div class="grab"></div>
+            <div class="notice">
+              <b>You're using both free apps</b>
+              <p>The free plan includes 2 apps. Pro has no limit and is ₹299 a month in India or $9 elsewhere. You can upgrade on ops.kriosity.in.</p>
+            </div>
+            <div class="btn primary">Got it</div>
+            <div class="hint" style="text-align:center">Your 2 apps stay as they are.</div>
+          </div>
+          <nav class="nav"><span class="on"><span class="pill"><svg><use href="#i-board"/></svg></span>Board</span><span><span class="pill"><svg><use href="#i-bell"/></svg></span>Due</span><span><span class="pill"><svg><use href="#i-user"/></svg></span>Account</span></nav>
+        </div></div>
+        <figcaption><b>13 · Free limit</b>Shown when the database returns <code>FREE_LIMIT</code> on insert. Calm, factual, no dark patterns.<code>FreeLimitSheet</code></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="notes">
+    <h2>Notes for the build</h2>
+    <ul>
+      <li><b>One backend.</b> The app talks to the existing Supabase project with the anon key and the signed-in user's session. Row-level security already limits every query to the user's own rows; the app adds no new tables.</li>
+      <li><b>Payments stay on the web.</b> Google Play requires its own billing for digital subscriptions bought inside an app, so version 1 shows the plan and the limit but has no buy button and no link to checkout.</li>
+      <li><b>Identifiers only.</b> If a typed value looks like a key (starts with <code>sk_</code>, <code>rzp_live_</code>, <code>eyJ</code>, or is a long random string in a password-like field), the sheet warns before saving.</li>
+      <li><b>Offline.</b> The last loaded board is cached and shown with an "Offline · last updated 9:12 AM" bar; edits wait until the network is back.</li>
+    </ul>
+  </section>
+</div>
